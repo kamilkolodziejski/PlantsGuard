@@ -4,8 +4,8 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - mvn package
+      - mvn war:war
 artifacts:
   files:
     - '**/*'
-  base-directory: 'target/PlantsGuard-0.1.0'
+  base-directory: 'target/PlantsGuard'
