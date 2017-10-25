@@ -13,8 +13,7 @@ public class ReportRequest {
 
 	public ReportRequest() {}
 
-	public ReportRequest(String phone, Float humi, Float temp, Float soil, Float light, Float batt, Float water,
-			Float ballance) {
+	public ReportRequest(String phone, Float humi, Float temp, Float soil, Float light, Float batt, Float water, Float ballance) {
 		super();
 		this.phone = phone;
 		this.humi = humi;
@@ -27,7 +26,7 @@ public class ReportRequest {
 	}
 	
 	public Measure createMeasure() {
-		Measure measure = new Measure(this.humi, this.temp, this.soil, this.light, this.batt);
+		Measure measure = new Measure(this.humi, this.temp, this.soil, this.light);
 		return measure;
 	}
 
