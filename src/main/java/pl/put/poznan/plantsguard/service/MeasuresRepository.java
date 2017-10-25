@@ -4,11 +4,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
 
 import pl.put.poznan.plantsguard.model.Measure;
 import pl.put.poznan.plantsguard.model.MeasureDataSet;
 
+
+@EnableScan
 public interface MeasuresRepository extends CrudRepository<Measure,String>{
 
 //	public static MeasureDataSet generateData(LocalDate dateFrom, LocalDate dateTo) {
