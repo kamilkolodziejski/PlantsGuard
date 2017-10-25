@@ -32,7 +32,7 @@ public class RestApiController {
 	@RequestMapping(value="/api/measures/save", method=RequestMethod.POST, consumes="application/json", produces="application/json")
 	public ResponseEntity<Measure> saveMeasure(@RequestBody ReportRequest request) {
 		Measure measure = request.createMeasure();
-		measureService.save(measure);
+		//measureService.save(measure);
 		return new ResponseEntity<Measure>(measure, HttpStatus.OK);
 	}
 	

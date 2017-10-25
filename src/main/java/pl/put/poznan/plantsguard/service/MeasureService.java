@@ -8,11 +8,11 @@ import pl.put.poznan.plantsguard.model.Measure;
 @Service
 public class MeasureService {
 	
-	@Autowired
-	MeasuresRepository repository;
+//	@Autowired
+//	MeasuresRepository repository;
 	
-	public void save(Measure measure) {
-		repository.save(measure);
-	}
+//	public void save(Measure measure) {
+//		repository.save(measure);
+//	}
 
 }

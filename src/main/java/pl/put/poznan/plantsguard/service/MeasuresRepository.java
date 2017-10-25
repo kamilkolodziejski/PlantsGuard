@@ -12,7 +12,7 @@ import pl.put.poznan.plantsguard.model.Measure;
 import pl.put.poznan.plantsguard.model.MeasureDataSet;
 
 
-@EnableScan
+//@EnableScan
 public interface MeasuresRepository extends CrudRepository<Measure,String>{
 
 //	public static MeasureDataSet generateData(LocalDate dateFrom, LocalDate dateTo) {
