@@ -21,7 +21,6 @@ import pl.put.poznan.plantsguard.model.Measure;
 import pl.put.poznan.plantsguard.model.MeasureDataSet;
 import pl.put.poznan.plantsguard.model.ReportRequest;
 import pl.put.poznan.plantsguard.service.MeasureService;
-import pl.put.poznan.plantsguard.service.MeasuresRepository;
 
 @RestController
 public class RestApiController {
