@@ -10,6 +10,7 @@ import javax.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,7 +51,8 @@ public class RestApiController {
 //		JsonObject response = jsonBuilder.createJsonFromDataSet(dataSet);
 //		return new ResponseEntity<String>(response.toString(),HttpStatus.OK);
 //	}
-	
+
+	@CrossOrigin
 	@RequestMapping(value="/api/measures/get", method=RequestMethod.GET, produces="application/json")
 	public ResponseEntity<String> getMeasures(@RequestParam("dateFrom") String dateFrom, @RequestParam("dateTo") String dateTo) {
 		MeasureDataSet dataSet = MeasuresRepository.findInPeriod(LocalDate.parse(dateFrom, DateTimeFormatter.BASIC_ISO_DATE), 

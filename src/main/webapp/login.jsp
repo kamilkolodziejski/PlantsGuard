@@ -39,6 +39,14 @@
 			</div>
 		</div>
 		<!-- /. NAV TOP  -->
+		<nav class="navbar-default navbar-side" role="navigation">
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+<!-- 					<li class="active-link"><a href="dashboard"><i class="fa fa-desktop "></i>Dashboard</a></li> -->
+<!-- 					<li><a href="charts"><i class="fa fa-table "></i>Wykres	pomiarów</a></li> -->
+<!-- 					<li><a href="settings"><i class="fa fa-edit "></i>Ustawienia</a></li> -->
+			</div>
+		</nav>
 			<div id="page-inner" style="align:center; text-align: center;">
 				<div class="row">
 					<div class="col-md-12">
@@ -46,7 +54,7 @@
 						<form:form id="login_form" method="post" modelAttribute="user">
 							<p><span>Login</span></p>
 							<span><input type="text" name="username" /></span> </br></br>
-							Hasło
+							<p><span>Hasło</span></p>
 							<input type="password" name="password"/> </br></br>
 							<input type="submit" value="Zaloguj"/> 
 						</form:form>
