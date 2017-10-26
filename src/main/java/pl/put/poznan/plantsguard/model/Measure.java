@@ -1,5 +1,6 @@
 package pl.put.poznan.plantsguard.model;
 
+import java.io.WriteAbortedException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -14,7 +15,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 @DynamoDBTable(tableName="Measures")
 public class Measure {
 
-	private LocalDateTime measureDateTime;
+	private LocalDateTime measureLocalDateTime;
 	private String measureDate;
 	private String measureTime;
 	private Float humidity;
@@ -23,16 +24,16 @@ public class Measure {
 	private Float light;
 	
 	public Measure() {
-		this.measureDateTime = LocalDateTime.now();
+		this.measureLocalDateTime = LocalDateTime.now();
 		this.measureDate = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE).toString();
-		this.measureTime = measureDateTime.format(DateTimeFormatter.ISO_TIME).toString();
+		this.measureTime = measureLocalDateTime.format(DateTimeFormatter.ISO_TIME).toString();
 	}
 
 	public Measure(Float humidity, Float temperature, Float soil, Float light) {
 		super();
-		this.measureDateTime = LocalDateTime.now();
-		this.measureDate = this.measureDateTime.format(DateTimeFormatter.ISO_DATE).toString();
-		this.measureTime = this.measureDateTime.format(DateTimeFormatter.ISO_TIME).toString();
+		this.measureLocalDateTime = LocalDateTime.now();
+		this.measureDate = this.measureLocalDateTime.format(DateTimeFormatter.ISO_DATE).toString();
+		this.measureTime = this.measureLocalDateTime.format(DateTimeFormatter.ISO_TIME).toString();
 		this.humidity = humidity;
 		this.temperature = temperature;
 		this.soil = soil;
@@ -70,13 +71,14 @@ public class Measure {
 	}
 	
 	public LocalDateTime extractLocalDateTime() {
-		return this.measureDateTime;
+		return this.measureLocalDateTime;
+		
 	}
 	
-	public void setMeasureDate(LocalDateTime measureDateTime) {
-		this.measureDateTime = measureDateTime;
-		this.measureDate = this.measureDateTime.format(DateTimeFormatter.ISO_DATE).toString();
-		this.measureTime = this.measureDateTime.format(DateTimeFormatter.ISO_TIME).toString();
+	public void setMeasureDate(LocalDateTime measureLocalDateTime) {
+		this.measureLocalDateTime = measureLocalDateTime;
+		this.measureDate = this.measureLocalDateTime.format(DateTimeFormatter.ISO_DATE).toString();
+		this.measureTime = this.measureLocalDateTime.format(DateTimeFormatter.ISO_TIME).toString();
 	}
 
 	public void setHumidity(Float humidity) {
