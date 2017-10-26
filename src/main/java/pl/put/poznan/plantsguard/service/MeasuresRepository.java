@@ -33,8 +33,8 @@ class MeasuresRepository {
 	
 //	List<Measure> findByDate(String measureDate);
 //	
-	List<Measure> findInPeriod(String measureDateFrom, String measureDateTo) {
-		return null;
-	}
+//	List<Measure> findInPeriod(String measureDateFrom, String measureDateTo) {
+//		return null;
+//	}
 	
 }
