@@ -11,6 +11,25 @@ import javax.json.JsonValue;
 
 public class JsonMeasuresBuilder {
 	
+
+	public JsonObject createJsonFromMeasure(Measure measure) {		
+//		JsonArrayBuilder colsArrayBuilder = factory.createArrayBuilder()
+//						.add(factory.createObjectBuilder()
+//								.add("id",JsonValue.NULL)
+//								.add("label", "MeasureDate")
+//								.add("pattern",JsonValue.NULL)
+//								.add("type", "date"));
+//		System.out.println(colsArrayBuilder.toString());
+//		JsonObject response = factory.createObjectBuilder().add("cols", colsArray)
+//		return colsArray;
+		
+		JsonObject jsonObject = Json.createObjectBuilder().add("temp", measure.getTemperature())
+														  .add("humidity", measure.getHumidity())
+														  .build();
+		return jsonObject;
+	};
+	
+	
 	public JsonObject createJsonFromDataSet(MeasureDataSet dataSet) {
 	
 		List<Measure> measures = dataSet.getMeasureList();
