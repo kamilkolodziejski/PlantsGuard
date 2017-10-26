@@ -94,7 +94,7 @@ function addNumber(number) {
 								<div> Interwal sprawdzania rozkazow</br> <input type="text"
 									name="ordersInterval" value="${configuration.ordersInterval }" />
 								</div>
-								<div>
+								<div></br></br>
 								<table id="phonesTable">
 									<c:forEach items="${configuration.authorizedNumbers}"
 										var="phone" varStatus="status">
