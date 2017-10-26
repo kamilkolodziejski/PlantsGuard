@@ -17,15 +17,15 @@ public class MeasureService {
 //	@Autowired
 //	MeasuresRepository repository;
 	
-//	static AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion("us-east-2").build();
-//	static DynamoDB db = new DynamoDB(client);
+	static AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion("us-east-2").build();
+	static DynamoDB db = new DynamoDB(client);
 	
 	public String save(Measure measure) {
-//		Table table = db.getTable("Measures");
+		Table table = db.getTable("Measures");
 		JsonMeasuresBuilder builder = new JsonMeasuresBuilder();
-		//Item item = Item.fromJSON(builder.createJsonFromMeasure(measure).toString());
+		Item item = Item.fromJSON(builder.createJsonFromMeasure(measure).toString());
+		table.putItem(item);
 		return builder.createJsonFromMeasure(measure).toString();
-//		table.putItem(item);
 	}
 
 }
