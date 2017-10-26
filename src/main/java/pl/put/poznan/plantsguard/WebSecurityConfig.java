@@ -23,21 +23,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-//		http
-//			.headers()
-//	    		.contentTypeOptions();
-//		http
-//			.csrf().disable()
-//			.authorizeRequests()
-//				.antMatchers("/api/**").permitAll()
-//				.anyRequest().authenticated()
-//				.and()
-//	        .formLogin()
-//	            .loginPage("/login")
-//	            .permitAll()
-//	            .and()
-//	        .logout()
-//	            .permitAll();
+		http
+			.headers()
+	    		.contentTypeOptions();
+		http
+			.csrf().disable()
+			.authorizeRequests()
+				.antMatchers("/api/**").permitAll()
+				.anyRequest().authenticated()
+				.and()
+	        .formLogin()
+	            .loginPage("/login")
+	            .permitAll()
+	            .and()
+	        .logout()
+	            .permitAll();
 	}
 	
 	
@@ -45,7 +45,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.inMemoryAuthentication()
-				.withUser("admin").password("password").roles("ADMIN");
+				.withUser("kamil.kolodziejski").password("123456").roles("ADMIN")
+				.and()
+				.withUser("witold.kaszubowski").password("123456").roles("ADMIN");
 	}
 	
 
