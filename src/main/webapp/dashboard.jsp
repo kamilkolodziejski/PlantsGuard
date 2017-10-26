@@ -52,6 +52,14 @@
 				<div class="row">
 					<div class="col-md-12">
 						<h2>Dashboard</h2>
+						
+						</br><center>
+						<div> <h1>Projekt zaliczeniowy</h1></div>
+						<div><p>Autorzy</p></div>
+						<p>Kamil Kołodziejski</p>
+						<p>Witold Kaszubowski</p>
+						<p>25.10.2017</p>
+						</center>
 					</div>
 				</div>
 				<!-- /. ROW  -->
@@ -67,8 +75,6 @@
 
 		<div class="row">
 			<div class="col-lg-12">
-				&copy; 2014 yourdomain.com | Design by: <a
-					href="http://binarytheme.com" style="color: #fff;" target="_blank">www.binarytheme.com</a>
 			</div>
 		</div>
 	</div>

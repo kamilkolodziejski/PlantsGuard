@@ -108,7 +108,7 @@ function addNumber(number) {
 								</table>
 								--------------------------------------------------------</br>
 								<div>
-								<td><input type="text" id="input_phone" value="Dodaj numer" /></td></br></br>
+								<td><input type="text" id="input_phone" value="Dodaj numer" /></td>
 								<td><input type="button" id="input_btn"
 									onclick="addNumber(document.getElementById('input_phone').value)"
 									value="Dodaj" /></td> </br> </br> <input type="submit" name="submit"
