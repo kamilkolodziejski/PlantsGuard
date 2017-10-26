@@ -33,7 +33,7 @@ public class RestApiController {
 	@RequestMapping(value="/api/measures/save", method=RequestMethod.POST, consumes="application/json", produces="application/json")
 	public ResponseEntity<Measure> saveMeasure(@RequestBody ReportRequest request) {
 		Measure measure = request.createMeasure();
-		//measureService.save(measure);
+		measureService.save(measure);
 		return new ResponseEntity<Measure>(measure, HttpStatus.OK);
 	}
 	
@@ -43,14 +43,12 @@ public class RestApiController {
 		return new ResponseEntity<ReportRequest>(report,HttpStatus.OK);
 	}
 	
-//	@RequestMapping(value="/api/json/test", method=RequestMethod.GET, produces="application/json")
-//	public ResponseEntity<String> testJson() {
-//		MeasureDataSet dataSet = MeasuresRepository.generateData(LocalDate.parse("20170101", DateTimeFormatter.BASIC_ISO_DATE), 
-//				LocalDate.parse("20170115", DateTimeFormatter.BASIC_ISO_DATE));
-//		JsonMeasuresBuilder jsonBuilder = new JsonMeasuresBuilder();
-//		JsonObject response = jsonBuilder.createJsonFromDataSet(dataSet);
-//		return new ResponseEntity<String>(response.toString(),HttpStatus.OK);
-//	}
+	@RequestMapping(value="/api/json/test", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> testJson(@RequestBody ReportRequest request) {
+		Measure measure = request.createMeasure();
+		JsonMeasuresBuilder builder = new JsonMeasuresBuilder();
+		return new ResponseEntity<String>(builder.createJsonFromMeasure(measure).toString(),HttpStatus.OK);
+	}
 
 	@CrossOrigin
 	@RequestMapping(value="/api/measures/get", method=RequestMethod.GET, produces="application/json")

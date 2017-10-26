@@ -17,7 +17,7 @@ public class MeasureService {
 //	@Autowired
 //	MeasuresRepository repository;
 	
-	static AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion("us-east2").build();
+	static AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion("us-east-2").build();
 	static DynamoDB db = new DynamoDB(client);
 	
 	public void save(Measure measure) {
