@@ -22,7 +22,6 @@ public class MeasureService {
 	static DynamoDB db = new DynamoDB(client);
 	
 	public String save(Measure measure) {
-		Table table = db.getTable("Measures");
 		DynamoDBMapper mapper = new DynamoDBMapper(client);
 		mapper.save(measure);
 		return "[ "+measure.getMeasureDate()+"T"+measure.getMeasureTime()+" ] - Success";
