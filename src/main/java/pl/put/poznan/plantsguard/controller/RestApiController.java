@@ -21,6 +21,7 @@ import pl.put.poznan.plantsguard.model.Measure;
 import pl.put.poznan.plantsguard.model.MeasureDataSet;
 import pl.put.poznan.plantsguard.model.ReportRequest;
 import pl.put.poznan.plantsguard.service.MeasureService;
+import pl.put.poznan.plantsguard.service.MeasuresRepository;
 
 @RestController
 public class RestApiController {
@@ -50,12 +51,12 @@ public class RestApiController {
 //		return new ResponseEntity<String>(response.toString(),HttpStatus.OK);
 //	}
 	
-//	@RequestMapping(value="/api/measures/get", method=RequestMethod.GET, produces="application/json")
-//	public ResponseEntity<String> getMeasures(@RequestParam("dateFrom") String dateFrom, @RequestParam("dateTo") String dateTo) {
-//		MeasureDataSet dataSet = MeasuresRepository.generateData(LocalDate.parse(dateFrom, DateTimeFormatter.BASIC_ISO_DATE), 
-//				LocalDate.parse(dateTo, DateTimeFormatter.BASIC_ISO_DATE));
-//		JsonMeasuresBuilder jsonBuilder = new JsonMeasuresBuilder();
-//		JsonObject response = jsonBuilder.createJsonFromDataSet(dataSet);
-//		return new ResponseEntity<String>(response.toString(),HttpStatus.OK);
-//	}
+	@RequestMapping(value="/api/measures/get", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<String> getMeasures(@RequestParam("dateFrom") String dateFrom, @RequestParam("dateTo") String dateTo) {
+		MeasureDataSet dataSet = MeasuresRepository.findInPeriod(LocalDate.parse(dateFrom, DateTimeFormatter.BASIC_ISO_DATE), 
+				LocalDate.parse(dateTo, DateTimeFormatter.BASIC_ISO_DATE));
+		JsonMeasuresBuilder jsonBuilder = new JsonMeasuresBuilder();
+		JsonObject response = jsonBuilder.createJsonFromDataSet(dataSet);
+		return new ResponseEntity<String>(response.toString(),HttpStatus.OK);
+	}
 }

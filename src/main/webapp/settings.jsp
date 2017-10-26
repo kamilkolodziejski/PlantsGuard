@@ -107,14 +107,15 @@ function addNumber(number) {
 									</c:forEach>
 								</table>
 								--------------------------------------------------------</br>
-								<td><input type="text" id="input_phone" value="Dodaj numer" /></td>
+								<div>
+								<td><input type="text" id="input_phone" value="Dodaj numer" /></td></br></br>
 								<td><input type="button" id="input_btn"
 									onclick="addNumber(document.getElementById('input_phone').value)"
 									value="Dodaj" /></td> </br> </br> <input type="submit" name="submit"
 									value="Zapisz" /> <input type="button" name="cancel"
-									onClick="window.location='/settings'" value="Zapisz" /> </br> </br> <label
+									onClick="window.location='/settings'" value="Anuluj" /> </br> </br> <label
 									style="color: green">${msg}</label> <label style="color: red">${error}</label>
-								</div>
+								</div></div>
 							</center>
 						</form>
 					</div>

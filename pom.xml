@@ -29,7 +29,7 @@
 	        <artifactId>spring-data-releasetrain</artifactId>
 	        <version>Hopper-SR10</version>
 	        <type>pom</type>
-	        <scope>import</scope>
+<!-- 	        <scope>import</scope> -->
 	        </dependency>
 	    </dependencies>
 	</dependencyManagement>
@@ -48,13 +48,11 @@
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jdt.core.compiler</groupId>
 			<artifactId>ecj</artifactId>
 			<version>4.6.1</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -72,13 +70,12 @@
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
-		    <scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>jstl</artifactId>
 <!-- 		    <version>1.2</version> -->
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.json</groupId>
