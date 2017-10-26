@@ -7,6 +7,7 @@ import java.util.Random;
 
 import org.socialsignin.spring.data.dynamodb.repository.EnableScan;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import pl.put.poznan.plantsguard.model.Measure;
 import pl.put.poznan.plantsguard.model.MeasureDataSet;
@@ -15,6 +16,8 @@ import pl.put.poznan.plantsguard.model.MeasureDataSet;
 //@EnableScan
 public //interface MeasuresRepository extends CrudRepository<Measure,String>{
 class MeasuresRepository {
+	
+	@CrossOrigin
 	public static MeasureDataSet findInPeriod(LocalDate dateFrom, LocalDate dateTo) {
 		MeasureDataSet result = new MeasureDataSet();
 		List<Measure> measures = new ArrayList<>();
