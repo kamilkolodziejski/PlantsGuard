@@ -69,7 +69,7 @@ public class Measure {
 		return light;
 	}
 	
-	public LocalDateTime getMeasureLocalDateTime() {
+	public LocalDateTime extractLocalDateTime() {
 		return this.measureDateTime;
 	}
 	

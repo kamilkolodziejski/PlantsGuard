@@ -62,7 +62,7 @@ public class JsonMeasuresBuilder {
 			rowsArrayBuilder.add(factory.createObjectBuilder()
 					.add("c", factory.createArrayBuilder()
 							.add(factory.createObjectBuilder()
-									.add("v", "Date("+item.getMeasureLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy, MM, dd"))+")")
+									.add("v", "Date("+item.extractLocalDateTime().format(DateTimeFormatter.ofPattern("yyyy, MM, dd"))+")")
 									.add("f",JsonValue.NULL))
 							.add(factory.createObjectBuilder()
 									.add("v", item.getTemperature())
