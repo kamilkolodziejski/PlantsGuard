@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
@@ -22,10 +23,9 @@ public class MeasureService {
 	
 	public String save(Measure measure) {
 		Table table = db.getTable("Measures");
-		JsonMeasuresBuilder builder = new JsonMeasuresBuilder();
-		Item item = Item.fromJSON(builder.createJsonFromMeasure(measure).toString());
-		table.putItem(item);
-		return builder.createJsonFromMeasure(measure).toString();
+		DynamoDBMapper mapper = new DynamoDBMapper(client);
+		mapper.save(measure);
+		return "[ "+measure.getMeasureDate()+"T"+measure.getMeasureTime()+" ] - Success";
 	}
 
 }
