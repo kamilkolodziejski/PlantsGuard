@@ -35,7 +35,7 @@ public class RestApiController {
 	@Autowired
 	MeasureService measureService;
 
-	@RequestMapping(value="/api/measures/savejson", method=RequestMethod.POST)
+	@RequestMapping(value="/api/measures/savejson", method=RequestMethod.POST, consumes= {"text/plain","application/json","*/*"})
 	public ResponseEntity<Measure> saveMeasure(@RequestBody ReportRequest request) {
 		Measure measure = request.createMeasure();
 		measureService.save(measure);
@@ -48,29 +48,29 @@ public class RestApiController {
 	}
 
 	@RequestMapping(value="/api/measures/{phone}/getsave", method=RequestMethod.GET)
-	public ResponseEntity<String> getMeasure(@RequestBody HashMap<String,Float> measures, @PathVariable(name="phone") String phone ) {
+	public ResponseEntity<String> getMeasure(/*@RequestBody ReportRequest request,*/ @PathVariable(name="phone") String phone ) {
 		//Measure measure = request.createMeasure();
 		//String result = measureService.save(measure);
-		return new ResponseEntity<String>("Sukces", HttpStatus.OK);
+		return new ResponseEntity<String>("Sukces"+phone, HttpStatus.OK);
 	}
-	@RequestMapping(value="/api/measures/getsave/test", method=RequestMethod.GET)
-	public ResponseEntity<HashMap<String,Float>> testGetMeasure() {
-		//Measure measure = request.createMeasure();
-		//String result = measureService.save(measure);
-		HashMap<String,Float> map = new HashMap<>();
-		map.put("temp", 15.6f);
-		map.put("humi", 53.6f);
-		return new ResponseEntity<HashMap<String,Float>>(map, HttpStatus.OK);
-	}
+//	@RequestMapping(value="/api/measures/getsave/test", method=RequestMethod.GET)
+//	public ResponseEntity<HashMap<String,Float>> testGetMeasure() {
+//		//Measure measure = request.createMeasure();
+//		//String result = measureService.save(measure);
+//		HashMap<String,Float> map = new HashMap<>();
+//		map.put("temp", 15.6f);
+//		map.put("humi", 53.6f);
+//		return new ResponseEntity<HashMap<String,Float>>(map, HttpStatus.OK);
+//	}
 
-	@CrossOrigin
 	@RequestMapping(value="/api/measures/get", method=RequestMethod.GET, produces="application/json")
 	public ResponseEntity<String> getMeasures(@RequestParam("dateFrom") String dateFrom, @RequestParam("dateTo") String dateTo) {
-////		MeasureDataSet dataSet = new MeasureDataSet().setMeasureList(measureService.findInPeriod(dateFrom, dateTo));
-//		MeasureDataSet dataSet = MeasuresRepository.findInPeriod(LocalDate.parse(dateFrom, DateTimeFormatter.BASIC_ISO_DATE), 
+//		MeasureDataSet dataSet = new MeasureDataSet().setMeasureList(measureService.findInPeriod(dateFrom, dateTo));
+//		MeasureDataSet dataSet = MeasuresRepository.getFromPeriod(LocalDate.parse(dateFrom, DateTimeFormatter.BASIC_ISO_DATE), 
 //				LocalDate.parse(dateTo, DateTimeFormatter.BASIC_ISO_DATE));
 //		JsonMeasuresBuilder jsonBuilder = new JsonMeasuresBuilder();
 //		JsonObject response = jsonBuilder.createJsonFromDataSet(dataSet);
-		return new ResponseEntity<String>(/*response.toString()*/ new String(),HttpStatus.OK);
+//		return new ResponseEntity<String>(/*response.toString()*/ new String(),HttpStatus.OK);
+		return new ResponseEntity<String>(measureService.getFromPeriod(dateFrom, dateTo).toString(),HttpStatus.OK);
 	}
 }
