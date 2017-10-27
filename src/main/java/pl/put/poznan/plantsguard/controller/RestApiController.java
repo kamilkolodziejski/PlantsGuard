@@ -3,6 +3,7 @@ package pl.put.poznan.plantsguard.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,31 +35,32 @@ public class RestApiController {
 	@Autowired
 	MeasureService measureService;
 
-	@RequestMapping(value="/api/measures/save", method=RequestMethod.POST)
+	@RequestMapping(value="/api/measures/savejson", method=RequestMethod.POST)
 	public ResponseEntity<Measure> saveMeasure(@RequestBody ReportRequest request) {
 		Measure measure = request.createMeasure();
 		measureService.save(measure);
 		return new ResponseEntity<Measure>(measure, HttpStatus.OK);
 	}
+	@RequestMapping(value="/api/measures/savejson/test", method=RequestMethod.GET)
+	public ResponseEntity<ReportRequest> testSaveMeasure() {
+		ReportRequest report = new ReportRequest("123456",32.4f,32.1f,34.55f,86.5f,21f,64f, 5.32f);
+		return new ResponseEntity<ReportRequest>(report, HttpStatus.OK);
+	}
 
-	@RequestMapping(value="/api/measures/testsave", method=RequestMethod.POST)
-	public ResponseEntity<String> saveTestMeasure() {
+	@RequestMapping(value="/api/measures/{phone}/getsave", method=RequestMethod.GET)
+	public ResponseEntity<String> getMeasure(@RequestBody HashMap<String,Float> measures, @PathVariable(name="phone") String phone ) {
 		//Measure measure = request.createMeasure();
 		//String result = measureService.save(measure);
-		return new ResponseEntity<String>(new String(), HttpStatus.OK);
+		return new ResponseEntity<String>("Sukces", HttpStatus.OK);
 	}
-	
-	@RequestMapping(value="/api/measures/test", method=RequestMethod.GET)
-	public ResponseEntity<ReportRequest> test() {
-		ReportRequest report = new ReportRequest("123456",32.4f,32.1f,34.55f,86.5f,21f,64f, 5.32f);
-		return new ResponseEntity<ReportRequest>(report,HttpStatus.OK);
-	}
-	
-	@RequestMapping(value="/api/json/test", method=RequestMethod.GET, produces="application/json")
-	public ResponseEntity<String> testJson(@RequestBody ReportRequest request) {
-		Measure measure = request.createMeasure();
-		JsonMeasuresBuilder builder = new JsonMeasuresBuilder();
-		return new ResponseEntity<String>(builder.createJsonFromMeasure(measure).toString(),HttpStatus.OK);
+	@RequestMapping(value="/api/measures/getsave/test", method=RequestMethod.GET)
+	public ResponseEntity<HashMap<String,Float>> testGetMeasure() {
+		//Measure measure = request.createMeasure();
+		//String result = measureService.save(measure);
+		HashMap<String,Float> map = new HashMap<>();
+		map.put("temp", 15.6f);
+		map.put("humi", 53.6f);
+		return new ResponseEntity<HashMap<String,Float>>(map, HttpStatus.OK);
 	}
 
 	@CrossOrigin
