@@ -1,4 +1,4 @@
-package utils;
+package pl.put.poznan.plantsguard.utils;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
