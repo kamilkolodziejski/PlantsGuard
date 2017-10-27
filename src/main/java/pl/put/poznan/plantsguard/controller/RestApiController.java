@@ -33,7 +33,7 @@ public class RestApiController {
 	@Autowired
 	MeasureService measureService;
 
-	@RequestMapping(value="/api/measures/save", method=RequestMethod.POST, consumes= {"application/json","*/*"})
+	@RequestMapping(value="/api/measures/save", method=RequestMethod.POST)
 	public ResponseEntity<Measure> saveMeasure(@RequestBody ReportRequest request) {
 		Measure measure = request.createMeasure();
 		measureService.save(measure);
