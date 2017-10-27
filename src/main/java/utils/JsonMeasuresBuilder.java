@@ -1,4 +1,4 @@
-package pl.put.poznan.plantsguard.model;
+package utils;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -8,6 +8,9 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonBuilderFactory;
 import javax.json.JsonObject;
 import javax.json.JsonValue;
+
+import pl.put.poznan.plantsguard.model.Measure;
+import pl.put.poznan.plantsguard.model.MeasureDataSet;
 
 public class JsonMeasuresBuilder {
 	

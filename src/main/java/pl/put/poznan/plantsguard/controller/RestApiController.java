@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import pl.put.poznan.plantsguard.model.JsonMeasuresBuilder;
 import pl.put.poznan.plantsguard.model.Measure;
 import pl.put.poznan.plantsguard.model.MeasureDataSet;
 import pl.put.poznan.plantsguard.model.ReportRequest;
 import pl.put.poznan.plantsguard.service.MeasureService;
 import pl.put.poznan.plantsguard.service.MeasuresRepository;
+import utils.JsonMeasuresBuilder;
 
 @RestController
 public class RestApiController {

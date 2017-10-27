@@ -1,5 +1,7 @@
-version: 0.2
-
+# .ebextensions/xray-daemon.configversion: 0.2
+option_settings:
+  aws:elasticbeanstalk:xray:
+    XRayEnabled: true
 phases:
   post_build:
     commands:

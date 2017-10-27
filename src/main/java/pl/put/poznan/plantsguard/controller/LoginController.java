@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import pl.put.poznan.plantsguard.SecurityUtils;
 import pl.put.poznan.plantsguard.model.User;
+import utils.SecurityUtils;
 
 @Controller
 public class LoginController {

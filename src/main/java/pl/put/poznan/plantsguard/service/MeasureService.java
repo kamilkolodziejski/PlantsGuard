@@ -9,8 +9,8 @@ import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Item;
 import com.amazonaws.services.dynamodbv2.document.Table;
 
-import pl.put.poznan.plantsguard.model.JsonMeasuresBuilder;
 import pl.put.poznan.plantsguard.model.Measure;
+import utils.JsonMeasuresBuilder;
 
 @Service
 public class MeasureService {

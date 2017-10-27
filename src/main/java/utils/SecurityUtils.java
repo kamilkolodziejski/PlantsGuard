@@ -1,4 +1,4 @@
-package pl.put.poznan.plantsguard;
+package utils;
 
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
