@@ -1,4 +1,7 @@
-version: 0.2
+version: 0.2;
+option_settings:
+  aws:elasticbeanstalk:xray:
+    XRayEnabled: true
 phases:
   post_build:
     commands:

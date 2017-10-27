@@ -28,15 +28,15 @@ import pl.put.poznan.plantsguard.utils.JsonMeasuresBuilder;
 public class RestApiController {
 	
 
-	@Autowired
-	MeasuresRepository measureRepository;
 //	@Autowired
-//	MeasureService measureService;
+//	MeasuresRepository measureRepository;
+	@Autowired
+	MeasureService measureService;
 
 	@RequestMapping(value="/api/measures/save", method=RequestMethod.POST, consumes= {"application/json","*/*"})
 	public ResponseEntity<Measure> saveMeasure(@RequestBody ReportRequest request) {
 		Measure measure = request.createMeasure();
-		measureRepository.save(measure);
+		measureService.save(measure);
 		return new ResponseEntity<Measure>(measure, HttpStatus.OK);
 	}
 

@@ -18,13 +18,13 @@ public class MeasureService {
 //	@Autowired
 //	MeasuresRepository repository;
 	
-//	static AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion("us-east-2").build();
-//	static DynamoDB db = new DynamoDB(client);
+	static AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion("us-east-2").build();
+	static DynamoDB db = new DynamoDB(client);
 //	
-//	public String save(Measure measure) {
-//		DynamoDBMapper mapper = new DynamoDBMapper(client);
-//		mapper.save(measure);
-//		return "[ "+measure.getMeasureDate()+"T"+measure.getMeasureTime()+" ] - Success";
-//	}
+	public String save(Measure measure) {
+		DynamoDBMapper mapper = new DynamoDBMapper(client);
+		mapper.save(measure);
+		return "[ "+measure.getMeasureDate()+"T"+measure.getMeasureTime()+" ] - Success";
+	}
 
 }
