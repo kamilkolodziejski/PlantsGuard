@@ -12,6 +12,7 @@ import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 
 @Configuration
 @EnableDynamoDBRepositories
@@ -28,14 +29,14 @@ public class DynamoDBConfig {
     @Bean
     public AmazonDynamoDB amazonDynamoDB() {
         AmazonDynamoDB amazonDynamoDB 
-          = new AmazonDynamoDBClient(); //amazonAWSCredentials());
+          = AmazonDynamoDBClientBuilder.standard().withRegion(amazonDynamoDBRegion).build();//configureRegion("us-east-2"); //amazonAWSCredentials());
          
-        if (!StringUtils.isEmpty(amazonDynamoDBEndpoint)) {
-            amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
-        }
-        if(!StringUtils.isEmpty(amazonDynamoDBRegion)) {
-        	amazonDynamoDB.setRegion(Region.getRegion(Regions.fromName(amazonDynamoDBRegion)));
-        }
+//        if (!StringUtils.isEmpty(amazonDynamoDBEndpoint)) {
+//            amazonDynamoDB.setEndpoint(amazonDynamoDBEndpoint);
+//        }
+//        if(!StringUtils.isEmpty(amazonDynamoDBRegion)) {
+//        	amazonDynamoDB.setRegion(Region.getRegion(com)));
+//        }
          
         return amazonDynamoDB;
     }
