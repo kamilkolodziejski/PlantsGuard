@@ -27,21 +27,24 @@ import pl.put.poznan.plantsguard.service.MeasuresRepository;
 @RestController
 public class RestApiController {
 	
-	@Autowired
-	MeasureService measureService;
 
-	@RequestMapping(value="/api/measures/save", method=RequestMethod.POST, consumes="application/json", produces="application/json")
+	@Autowired
+	MeasuresRepository measureRepository;
+//	@Autowired
+//	MeasureService measureService;
+
+	@RequestMapping(value="/api/measures/save", method=RequestMethod.POST, consumes= {"application/json","*/*"})
 	public ResponseEntity<Measure> saveMeasure(@RequestBody ReportRequest request) {
 		Measure measure = request.createMeasure();
-		measureService.save(measure);
+		measureRepository.save(measure);
 		return new ResponseEntity<Measure>(measure, HttpStatus.OK);
 	}
 
-	@RequestMapping(value="/api/measures/testsave", method=RequestMethod.POST, consumes="application/json")
-	public ResponseEntity<String> saveTestMeasure(@RequestBody ReportRequest request) {
-		Measure measure = request.createMeasure();
-		String result = measureService.save(measure);
-		return new ResponseEntity<String>(result, HttpStatus.OK);
+	@RequestMapping(value="/api/measures/testsave", method=RequestMethod.POST)
+	public ResponseEntity<String> saveTestMeasure() {
+		//Measure measure = request.createMeasure();
+		//String result = measureService.save(measure);
+		return new ResponseEntity<String>(new String(), HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/api/measures/test", method=RequestMethod.GET)
@@ -60,10 +63,11 @@ public class RestApiController {
 	@CrossOrigin
 	@RequestMapping(value="/api/measures/get", method=RequestMethod.GET, produces="application/json")
 	public ResponseEntity<String> getMeasures(@RequestParam("dateFrom") String dateFrom, @RequestParam("dateTo") String dateTo) {
-		MeasureDataSet dataSet = MeasuresRepository.findInPeriod(LocalDate.parse(dateFrom, DateTimeFormatter.BASIC_ISO_DATE), 
-				LocalDate.parse(dateTo, DateTimeFormatter.BASIC_ISO_DATE));
-		JsonMeasuresBuilder jsonBuilder = new JsonMeasuresBuilder();
-		JsonObject response = jsonBuilder.createJsonFromDataSet(dataSet);
-		return new ResponseEntity<String>(response.toString(),HttpStatus.OK);
+////		MeasureDataSet dataSet = new MeasureDataSet().setMeasureList(measureService.findInPeriod(dateFrom, dateTo));
+//		MeasureDataSet dataSet = MeasuresRepository.findInPeriod(LocalDate.parse(dateFrom, DateTimeFormatter.BASIC_ISO_DATE), 
+//				LocalDate.parse(dateTo, DateTimeFormatter.BASIC_ISO_DATE));
+//		JsonMeasuresBuilder jsonBuilder = new JsonMeasuresBuilder();
+//		JsonObject response = jsonBuilder.createJsonFromDataSet(dataSet);
+		return new ResponseEntity<String>(/*response.toString()*/ new String(),HttpStatus.OK);
 	}
 }
