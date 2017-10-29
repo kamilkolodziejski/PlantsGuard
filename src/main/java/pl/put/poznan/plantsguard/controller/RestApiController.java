@@ -4,6 +4,7 @@ package pl.put.poznan.plantsguard.controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
+import java.util.Optional;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -43,9 +44,15 @@ public class RestApiController {
 	}
 	
 	@RequestMapping(value="/api/measures/{phone}/save", method=RequestMethod.GET)
-	public ResponseEntity<HashMap<String,Object>> getMeasure(@PathVariable(name="phone") String phone, @RequestParam HashMap<String,Object> measures) {
-		
-		return new ResponseEntity<HashMap<String,Object>>(measures, HttpStatus.OK);
+	public ResponseEntity<String> getMeasure(@PathVariable(name="phone") String phone, @RequestParam(name="HUMI",required=false) Float humi,
+																					   @RequestParam(name="TEMP",required=false) Float temp,
+																					   @RequestParam(name="LIGHT",required=false) Float light,
+																					   @RequestParam(name="SOIL",required=false) Float soil,
+																					   @RequestParam(name="SWIMMER",required=false) Float swimmer,
+																					   @RequestParam(name="BATT",required=false) Integer batt) {
+Measure measure = new Measure(humi, temp, soil, light);
+		measureService.save(measure);
+		return new ResponseEntity<String>("Success saved", HttpStatus.OK);
 	}
 //	@RequestMapping(value="/api/measures/getsave/test", method=RequestMethod.GET)
 //	public ResponseEntity<HashMap<String,Float>> testGetMeasure() {
