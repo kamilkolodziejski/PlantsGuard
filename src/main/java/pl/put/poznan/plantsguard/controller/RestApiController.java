@@ -35,7 +35,7 @@ public class RestApiController {
 	@Autowired
 	MeasureService measureService;
 
-	@RequestMapping(value="/api/measures/savejson", method=RequestMethod.POST, consumes= {"application/json","*/*"})
+	@RequestMapping(value="/api/measures/savejson", method=RequestMethod.POST, consumes= "application/json")
 	public ResponseEntity<Measure> saveMeasure(@RequestBody ReportRequest request) {
 		Measure measure = request.createMeasure();
 		measureService.save(measure);
@@ -48,10 +48,10 @@ public class RestApiController {
 	}
 
 	@RequestMapping(value="/api/measures/{phone}/getsave", method=RequestMethod.GET)
-	public ResponseEntity<String> getMeasure(/*@RequestBody ReportRequest request,*/ @PathVariable(name="phone") String phone ) {
-		//Measure measure = request.createMeasure();
-		//String result = measureService.save(measure);
-		return new ResponseEntity<String>("Sukces"+phone, HttpStatus.OK);
+	public ResponseEntity<Measure> getMeasure(@RequestBody ReportRequest request, @PathVariable(name="phone") String phone ) {
+		Measure measure = request.createMeasure();
+		String result = measureService.save(measure);
+		return new ResponseEntity<Measure>(measure, HttpStatus.OK);
 	}
 //	@RequestMapping(value="/api/measures/getsave/test", method=RequestMethod.GET)
 //	public ResponseEntity<HashMap<String,Float>> testGetMeasure() {
