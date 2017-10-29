@@ -43,9 +43,9 @@ public class RestApiController {
 	}
 	
 	@RequestMapping(value="/api/measures/{phone}/save", method=RequestMethod.GET)
-	public ResponseEntity<HashMap<String,Float>> getMeasure(@PathVariable(name="phone") String phone, @RequestParam HashMap<String,Float> measures) {
+	public ResponseEntity<HashMap<String,Object>> getMeasure(@PathVariable(name="phone") String phone, @RequestParam HashMap<String,Object> measures) {
 		
-		return new ResponseEntity<HashMap<String,Float>>(measures, HttpStatus.OK);
+		return new ResponseEntity<HashMap<String,Object>>(measures, HttpStatus.OK);
 	}
 //	@RequestMapping(value="/api/measures/getsave/test", method=RequestMethod.GET)
 //	public ResponseEntity<HashMap<String,Float>> testGetMeasure() {
