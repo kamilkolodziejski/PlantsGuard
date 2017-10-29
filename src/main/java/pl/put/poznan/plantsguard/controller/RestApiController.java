@@ -41,17 +41,11 @@ public class RestApiController {
 		measureService.save(measure);
 		return new ResponseEntity<Measure>(measure, HttpStatus.OK);
 	}
-	@RequestMapping(value="/api/measures/savejson/test", method=RequestMethod.GET)
-	public ResponseEntity<ReportRequest> testSaveMeasure() {
-		ReportRequest report = new ReportRequest("123456",32.4f,32.1f,34.55f,86.5f,21f,64f, 5.32f);
-		return new ResponseEntity<ReportRequest>(report, HttpStatus.OK);
-	}
-
-	@RequestMapping(value="/api/measures/{phone}/getsave", method=RequestMethod.GET)
-	public ResponseEntity<Measure> getMeasure(@RequestBody ReportRequest request, @PathVariable(name="phone") String phone ) {
-		Measure measure = request.createMeasure();
-		String result = measureService.save(measure);
-		return new ResponseEntity<Measure>(measure, HttpStatus.OK);
+	
+	@RequestMapping(value="/api/measures/{phone}/save", method=RequestMethod.GET)
+	public ResponseEntity<HashMap<String,Float>> getMeasure(@PathVariable(name="phone") String phone, @RequestParam HashMap<String,Float> measures) {
+		
+		return new ResponseEntity<HashMap<String,Float>>(measures, HttpStatus.OK);
 	}
 //	@RequestMapping(value="/api/measures/getsave/test", method=RequestMethod.GET)
 //	public ResponseEntity<HashMap<String,Float>> testGetMeasure() {
