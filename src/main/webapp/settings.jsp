@@ -88,10 +88,10 @@ function addNumber(number) {
 						<form method="post" action="/settings"
 							modelAttribute="configuration">
 							<center>
-								<div> Interwal pomiarow</br> <input type="text" name="measureInterval"
+								<div> Interwal pomiarow</br> <input type="text" name="measureInterval" pattern="[0-9]{1-5}"
 									value="${configuration.measureInterval }" /> </div>
 									
-								<div> Interwal sprawdzania rozkazow</br> <input type="text"
+								<div> Interwal sprawdzania rozkazow</br> <input type="text" pattern="[0-9]{1-5}"
 									name="ordersInterval" value="${configuration.ordersInterval }" />
 								</div>
 								<div></br></br>
@@ -99,7 +99,7 @@ function addNumber(number) {
 									<c:forEach items="${configuration.authorizedNumbers}"
 										var="phone" varStatus="status">
 										<tr>
-											<td><input type="text"
+											<td><input type="text" pattern="[0-9]{11}"
 												name="authorizedNumbers[${status.index }]" value="${phone }" /></td>
 											<td><input type="button" onclick='deleteNumber(this)'
 												value="Usun" /></td>
@@ -108,7 +108,7 @@ function addNumber(number) {
 								</table>
 								--------------------------------------------------------</br>
 								<div>
-								<td><input type="text" id="input_phone" value="Dodaj numer" /></td>
+								<td><input type="text" id="input_phone" pattern="[0-9]{11}" value="Dodaj numer" /></td>
 								<td><input type="button" id="input_btn"
 									onclick="addNumber(document.getElementById('input_phone').value)"
 									value="Dodaj" /></td> </br> </br> <input type="submit" name="submit"

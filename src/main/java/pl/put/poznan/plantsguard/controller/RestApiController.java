@@ -1,18 +1,10 @@
 package pl.put.poznan.plantsguard.controller;
 
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Optional;
-
-import javax.json.Json;
-import javax.json.JsonObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,18 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.put.poznan.plantsguard.model.Measure;
-import pl.put.poznan.plantsguard.model.MeasureDataSet;
 import pl.put.poznan.plantsguard.model.ReportRequest;
 import pl.put.poznan.plantsguard.service.MeasureService;
-import pl.put.poznan.plantsguard.service.MeasuresRepository;
-import pl.put.poznan.plantsguard.utils.JsonMeasuresBuilder;
 
 @RestController
 public class RestApiController {
 	
-
-//	@Autowired
-//	MeasuresRepository measureRepository;
 	@Autowired
 	MeasureService measureService;
 
@@ -50,7 +36,7 @@ public class RestApiController {
 																					   @RequestParam(name="SOIL",required=false) Float soil,
 																					   @RequestParam(name="SWIMMER",required=false) Float swimmer,
 																					   @RequestParam(name="BATT",required=false) Integer batt) {
-Measure measure = new Measure(humi, temp, soil, light);
+		Measure measure = new Measure(humi, temp, soil, light);
 		measureService.save(measure);
 		return new ResponseEntity<String>("Success saved", HttpStatus.OK);
 	}
