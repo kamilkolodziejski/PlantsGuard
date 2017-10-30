@@ -19,8 +19,8 @@ import pl.put.poznan.plantsguard.service.UserAuthenticationProvider;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
-	@Autowired
-	UserAuthenticationProvider authenticationProvider;
+//	@Autowired
+//	UserAuthenticationProvider authenticationProvider;
 	
 	
 	@Override
