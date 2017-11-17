@@ -33,19 +33,19 @@ public class PlantsGuardApplication extends SpringBootServletInitializer{
     protected final SpringApplicationBuilder configure(final SpringApplicationBuilder application) {
         return application.sources(PlantsGuardApplication.class);
     }
-
-	@Bean
-	  public Filter TracingFilter() {
-	    return new AWSXRayServletFilter("plantsguard-keeper");
-	  }
-    
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/*").allowedOrigins("*");
-            }
-        };
-    }
+//
+//	@Bean
+//	  public Filter TracingFilter() {
+//	    return new AWSXRayServletFilter("plantsguard-keeper");
+//	  }
+//    
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer() {
+//        return new WebMvcConfigurerAdapter() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/*").allowedOrigins("*");
+//            }
+//        };
+//    }
 }

@@ -19,8 +19,8 @@ import pl.put.poznan.plantsguard.service.UserAuthenticationProvider;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
-//	@Autowired
-//	UserAuthenticationProvider authenticationProvider;
+	@Autowired
+	UserAuthenticationProvider authenticationProvider;
 	
 	
 	@Override
@@ -32,11 +32,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		http.csrf().disable();
 		http
 			.headers()
 	    		.contentTypeOptions();
 		http
-			.csrf().disable()
 			.authorizeRequests()
 				.antMatchers("/api/**").permitAll()
 				.anyRequest().authenticated()
@@ -46,16 +46,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	            .permitAll()
 	            .and()
 	        .logout()
-	            .permitAll();
+	            .permitAll()
+	            .logoutUrl("/login?error");
 	}
 	
 
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-//			.authenticationProvider(authenticationProvider)
-			.inMemoryAuthentication()
-				.withUser("admin").password("admin").roles("ADMIN");
+			.authenticationProvider(authenticationProvider);
+//			.inMemoryAuthentication()
+//				.withUser("admin").password("admin").roles("ADMIN");
 	}
 	
 

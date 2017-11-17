@@ -46,10 +46,11 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String login(@ModelAttribute("user") User user, Model model) {
-		if(user.validate()) 
+	public String login(/*@ModelAttribute("user") User user,*/ Model model) {
+		//if(user.validate()) 
+		System.out.println("Controller");
 			return "redirect:/dashboard";
-		model.addAttribute("error", "Błędny login lub hasło");
-		return "login";
+		//model.addAttribute("error", "Błędny login lub hasło");
+		//return "login";
 	}
 }

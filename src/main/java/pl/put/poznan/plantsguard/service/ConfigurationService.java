@@ -2,11 +2,12 @@ package pl.put.poznan.plantsguard.service;
 
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import pl.put.poznan.plantsguard.model.Configuration;
 
-@Service
+@Component
 public class ConfigurationService {
 
 	private static Configuration configuration;
@@ -32,8 +33,8 @@ public class ConfigurationService {
 	private Configuration getFromCode() {
 		Configuration config = new Configuration();
 		config.setAuthorizedNumbers(new ArrayList<String>() {{ 
-			add("510243323");
-			add("666666666");
+			add("51024123323");
+			add("66666666666");
 		}});
 		config.setMeasureInterval(15);
 		config.setOrdersInterval(50);

@@ -9,7 +9,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
 import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
 
-//@Service
+@Service
 public class UserService {
 //
 //	static AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().withRegion("us-east-2").build();
@@ -19,7 +19,12 @@ public class UserService {
 //		
 //	}
 //	
-//	public boolean authenticate(String user, String password) {
+	public boolean authenticate(String user, String password) {
+		System.out.println("Authentication");
+		if(user.equals(password))
+			return true;
+		else
+			return false;
 //		Table tb = db.getTable("Users");
 //		String password64 = tb.getItem("login", user).get("password").toString();
 //		byte[] bytes = Base64.getDecoder().decode(password64);
@@ -27,5 +32,5 @@ public class UserService {
 //			return true;
 //		else
 //			return false;
-//	}
+	}
 }

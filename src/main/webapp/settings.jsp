@@ -21,20 +21,13 @@
 
 <script type="text/javascript">
 function deleteNumber(btn) {
-	var row = btn.parentNode.parentNode;
-	var phone=row.firstChild;
-	var name=phone.getAttribute('name');
-	document.write(name);
-	phone.value="";
-	phone.name="";
-	phone.outerHTML = "";
-	delete phone;
-	row.outerHTML = "";
-	delete row;
-	var nodes = document.getElementById("phonesTable").getChildNodes;
+	if(document.getElementById("phonesTable").getElementsByTagName("tr").length<=1) return;
+	var row_id=btn.substring(4);
+	var table = document.getElementById("phonesTable").deleteRow(row_id);
+	var nodes = table.getChildNodes;
 	var i=0;
 	for(node in nodes) {
-		node.firstChild.name='authorizedNumbers['+i+']';
+		node.firstChild.name='xxxauthorizedNumbers['+i+']';
 	}
 }
 
@@ -42,10 +35,11 @@ function addNumber(number) {
 	var table = document.getElementById('phonesTable');
     var rowCount = table.getElementsByTagName("tr").length;
     var row = table.insertRow();
+    row.id="row_"+rowCount
     var cell1 = row.insertCell(0);
     cell1.innerHTML = '<input type="text" name="authorizedNumbers['+rowCount+']" value="'+number+'"/>';
     var cell2 = row.insertCell(1);
-	cell2.innerHTML = '<input type="button" onclick="deleteNumber(this)" value="Usun"/>';
+	cell2.innerHTML = '<input type="button" id="btn_'+rowCount+'" onclick="deleteNumber(this.id)" value="Usun"/>';
 	document.getElementById('input_phone').value='Dodaj numer';
 }
 </script>
@@ -98,23 +92,22 @@ function addNumber(number) {
 								<table id="phonesTable">
 									<c:forEach items="${configuration.authorizedNumbers}"
 										var="phone" varStatus="status">
-										<tr>
+										<tr id="row_${status.index }">
 											<td><input type="text" pattern="[0-9]{11}"
 												name="authorizedNumbers[${status.index }]" value="${phone }" /></td>
-											<td><input type="button" onclick='deleteNumber(this)'
+											<td><input type="button" id="btn_${status.index }" onclick='deleteNumber(this.id)'
 												value="Usun" /></td>
 										</tr>
 									</c:forEach>
 								</table>
 								--------------------------------------------------------</br>
 								<div>
-								<td><input type="text" id="input_phone" pattern="[0-9]{11}" value="Dodaj numer" /></td>
-								<td><input type="button" id="input_btn"
-									onclick="addNumber(document.getElementById('input_phone').value)"
-									value="Dodaj" /></td> </br> </br> <input type="submit" name="submit"
-									value="Zapisz" /> <input type="button" name="cancel"
-									onClick="window.location='/settings'" value="Anuluj" /> </br> </br> <label
-									style="color: green">${msg}</label> <label style="color: red">${error}</label>
+								<td><input type="text" id="input_phone" value="Dodaj numer" /></td>
+								<td><input type="button" id="input_btn"	onclick="addNumber(document.getElementById('input_phone').value)"
+										   value="Dodaj" /></td> </br> </br> 
+								<input type="submit" name="submit" value="Zapisz" /> 
+								<input type="button" name="cancel" onClick="window.location='/settings'" value="Anuluj" /> </br> </br> 
+								<label style="color: green">${msg}</label> <label style="color: red">${error}</label>
 								</div></div>
 							</center>
 						</form>
