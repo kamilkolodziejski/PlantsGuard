@@ -7,7 +7,6 @@ public class Device {
 	private final String deviceNumber;
 	private Configuration configuration;
 	private Measure lastMeasure;
-	private DeviceState lastState;
 		
 	public Device(String deviceNumber) {
 		super();
@@ -24,12 +23,6 @@ public class Device {
 	}
 	public void setLastMeasure(Measure lastMeasure) {
 		this.lastMeasure = lastMeasure;
-	}
-	public DeviceState getLastState() {
-		return lastState;
-	}
-	public void setLastState(DeviceState lastState) {
-		this.lastState = lastState;
 	}
 	public String getDeviceNumber() {
 		return deviceNumber;
