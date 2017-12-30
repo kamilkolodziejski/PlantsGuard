@@ -2,6 +2,16 @@ package pl.put.poznan.plantsguard.controller;
 
 
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+import javax.json.JsonObject;
+import javax.swing.text.DateFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +22,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import pl.put.poznan.plantsguard.model.Measure;
+import pl.put.poznan.plantsguard.model.MeasureJson;
+import pl.put.poznan.plantsguard.model.MeasureWrapper;
 import pl.put.poznan.plantsguard.model.ReportRequest;
 import pl.put.poznan.plantsguard.service.MeasureService;
 
@@ -22,23 +36,27 @@ public class RestApiController {
 	@Autowired
 	MeasureService measureService;
 
-	@RequestMapping(value="/api/measures/savejson", method=RequestMethod.POST, consumes= "application/json")
-	public ResponseEntity<Measure> saveMeasure(@RequestBody ReportRequest request) {
-		Measure measure = request.createMeasure();
-		measureService.save(measure);
+	@RequestMapping(value="/api/measure/save", method=RequestMethod.POST, consumes= "application/json")
+	public ResponseEntity<Measure> saveMeasure(@RequestBody String json) {
+		ObjectMapper mapper = new ObjectMapper();
+		Measure measure = null;
+		try {
+			measure = mapper.readValue(json, Measure.class);
+		}catch(Exception e) { e.printStackTrace(); };
 		return new ResponseEntity<Measure>(measure, HttpStatus.OK);
+		//return new ResponseEntity<Measure>(json, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/api/measures/{phone}/save", method=RequestMethod.GET)
-	public ResponseEntity<String> getMeasure(@PathVariable(name="phone") String phone, @RequestParam(name="HUMI",required=false) Float humi,
-																					   @RequestParam(name="TEMP",required=false) Float temp,
-																					   @RequestParam(name="LIGHT",required=false) Float light,
-																					   @RequestParam(name="SOIL",required=false) Float soil,
-																					   @RequestParam(name="SWIMMER",required=false) Float swimmer,
-																					   @RequestParam(name="BATT",required=false) Integer batt) {
-		Measure measure = new Measure(humi, temp, soil, light);
-		measureService.save(measure);
+	public ResponseEntity<String> saveMeasureGET(MeasureWrapper wrapper) {
+		Measure measure = wrapper.measurable();
 		return new ResponseEntity<String>("Success saved", HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/api/measures", method=RequestMethod.GET)
+	public ResponseEntity<Measure> getTestMeasure() {
+		Measure measure = new Measure(65.2f,36.6f,71.04f,null);
+		return new ResponseEntity<Measure>(measure, HttpStatus.OK);
 	}
 //	@RequestMapping(value="/api/measures/getsave/test", method=RequestMethod.GET)
 //	public ResponseEntity<HashMap<String,Float>> testGetMeasure() {
@@ -58,6 +76,16 @@ public class RestApiController {
 //		JsonMeasuresBuilder jsonBuilder = new JsonMeasuresBuilder();
 //		JsonObject response = jsonBuilder.createJsonFromDataSet(dataSet);
 //		return new ResponseEntity<String>(/*response.toString()*/ new String(),HttpStatus.OK);
-		return new ResponseEntity<String>(measureService.getFromPeriod(dateFrom, dateTo).toString(),HttpStatus.OK);
+		try {
+			LocalDate from = LocalDate.parse(dateFrom, DateTimeFormatter.BASIC_ISO_DATE);
+			LocalDate to = LocalDate.parse(dateTo, DateTimeFormatter.BASIC_ISO_DATE);
+			String response = measureService.getFromPeriod(from, to);
+			return new ResponseEntity<String>(response,HttpStatus.OK);
+		}catch(Exception e) {
+			StringWriter sw = new StringWriter();
+			PrintWriter pw = new PrintWriter(sw);
+			e.printStackTrace(pw);
+			return new ResponseEntity<String>(sw.toString(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 }

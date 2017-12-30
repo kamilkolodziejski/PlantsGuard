@@ -30,10 +30,10 @@
 <script type="text/javascript">
 
 $(document).ready( function () {
-	loadChart('20160101','20160201');
+	loadChart('20160101','20160131');
 	});
 	
-  	 function loadChart(start='20170101', end='20170115') {
+  	 function loadChart(start='20170101', end='20170115'){
   		
 	 google.charts.load('current', {'packages':['corechart']});
 	 google.charts.setOnLoadCallback(drawChartRest);
@@ -44,10 +44,10 @@ $(document).ready( function () {
 	         async: false
 	         }).responseText;
 	         
-	     var data = new google.visualization.DataTable(jsonData);
+	     var data = new google.visualization.arrayToDataTable(jsonData);
 	
 	     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-	     chart.draw(data, {width: 800, height: 600});
+	     chart.draw(data, {width: 600, height: 400});
 	   }
   }
 </script>
