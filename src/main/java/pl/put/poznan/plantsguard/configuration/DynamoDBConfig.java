@@ -1,3 +1,4 @@
+package pl.put.poznan.plantsguard.configuration;
 //package pl.put.poznan.plantsguard;
 //
 //import org.socialsignin.spring.data.dynamodb.repository.config.EnableDynamoDBRepositories;

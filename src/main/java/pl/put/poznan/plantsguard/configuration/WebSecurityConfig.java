@@ -1,4 +1,4 @@
-package pl.put.poznan.plantsguard.security;
+package pl.put.poznan.plantsguard.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -50,8 +50,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.authenticationProvider(authenticationProvider);
-//			.inMemoryAuthentication()
-//				.withUser("admin").password("admin").roles("ADMIN");
 	}
 	
 

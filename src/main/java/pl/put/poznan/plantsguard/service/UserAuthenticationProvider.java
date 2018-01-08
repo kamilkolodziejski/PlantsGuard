@@ -14,26 +14,18 @@ import org.springframework.stereotype.Service;
 
 @Component
 public class UserAuthenticationProvider implements AuthenticationProvider {
-
-//	@Autowired
-//	private UserService userService;
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        String name = authentication.getName();
+        String login = authentication.getName();
         String password = authentication.getCredentials().toString();
-//        if (userService.authenticate(name, password)) {
-        if(password.equals(name)) {
-//        	UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(name,password);
-//        	return token;
-            // use the credentials
-            // and authenticate against the third-party system
-//        	ArrayList<GrantedAuthority> grants = new ArrayList<>();
-//        	grants.add(new SimpleGrantedAuthority("Admin"));
+        IAuthenticate auth = new Authenticator();
+        if(auth.authenticate(login, password)) {
             return new UsernamePasswordAuthenticationToken(
-              name, password, new ArrayList<>());
-        } else {
-            return null;
+            		login, password, new ArrayList<>());        	
+        }
+        else {
+        	return null;
         }
 	}
 

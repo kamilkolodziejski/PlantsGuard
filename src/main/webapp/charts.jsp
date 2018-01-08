@@ -56,6 +56,8 @@ $(document).ready( function () {
 </head>
 <body>
 	<div id="wrapper">
+	
+		<!--  NAV TOP  -->
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="adjust-nav">
 				<div class="navbar-header">
@@ -65,24 +67,23 @@ $(document).ready( function () {
 							class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="#"> <img
-						src="assets/img/logo.png" alt="" />
+						src="/assets/img/logo.png" />
 					</a>
 				</div>
-				<span class="logout-spn"> <a href="logout"
-					style="color: #fff;">Wyloguj</a>
+				<span class="logout-spn"> <a href="logout" style="color: #fff;">Wyloguj</a>
 				</span>
 			</div>
 		</div>
 		<!-- /. NAV TOP  -->
+		
+		<!--  NAV SIDE  -->
 		<nav class="navbar-default navbar-side" role="navigation">
-		<div class="sidebar-collapse">
-			<ul class="nav" id="main-menu">
-				<li><a href="dashboard"><i class="fa fa-desktop "></i>Dashboard</a></li>
-				<li class="active-link"><a href="charts"><i
-						class="fa fa-table "></i>Wykres pomiarów</a></li>
-				<li><a href="settings"><i class="fa fa-edit "></i>Ustawienia</a></li>
-			</ul>
-		</div>
+			<div class="sidebar-collapse">
+				<ul class="nav" id="main-menu">
+					<li><a href="/dashboard"><i class="fa fa-desktop "></i>Dashboard</a></li>
+					<li class="active-link"><a href="/charts"><i class="fa fa-table "></i>Wykres pomiarów</a></li>
+					<li><a href="/devices"><i class="fa fa-edit "></i>Urządzenia</a></li>
+			</div>
 		</nav>
 		<!-- /. NAV SIDE  -->
 		<div id="page-wrapper">

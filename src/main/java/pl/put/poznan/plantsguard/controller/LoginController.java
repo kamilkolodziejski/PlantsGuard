@@ -19,22 +19,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import pl.put.poznan.plantsguard.model.User;
-import pl.put.poznan.plantsguard.security.SecurityUtils;
+import pl.put.poznan.plantsguard.service.SecurityUtils;
 
 @Controller
 public class LoginController {
-	
-//	@ModelAttribute("user")
-//	public User SetUpUserForm() {
-//		return new User();
-//	}
+
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
 	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	    if (auth != null){    
 	        new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
-	    return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+	    return "redirect:/login?logout";
 	}
 
 	@GetMapping(value= {"/login","/"})
@@ -46,11 +42,8 @@ public class LoginController {
 	}
 	
 	@PostMapping("/login")
-	public String login(/*@ModelAttribute("user") User user,*/ Model model) {
-		//if(user.validate()) 
+	public String login(Model model) {
 		System.out.println("Controller");
 			return "redirect:/dashboard";
-		//model.addAttribute("error", "Błędny login lub hasło");
-		//return "login";
 	}
 }

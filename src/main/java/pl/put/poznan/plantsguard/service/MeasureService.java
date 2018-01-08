@@ -69,7 +69,7 @@ public class MeasureService{ // implements IMeasureService{
 		Random rand = new Random();
 		for(int i=0; i<duration.toDays(); i++) {
 			Measure measure = new Measure();
-			measure.setMeasureDate(LocalDate.of(2017, 1, 1+i).format(DateTimeFormatter.BASIC_ISO_DATE), DateTimeFormatter.BASIC_ISO_DATE);
+			measure.setMeasureDate(LocalDate.of(2017, 1, 1+i).format(DateTimeFormatter.BASIC_ISO_DATE));
 			measure.setHumidity(rand.nextFloat()%i);
 			measure.setLight(rand.nextFloat()%i);
 			measure.setSoil(rand.nextFloat()%i);
@@ -91,7 +91,7 @@ public class MeasureService{ // implements IMeasureService{
 		for(int i=1; i<=days; i++) {
 			//System.out.println(fromDate.plusDays(i).format(DateTimeFormatter.BASIC_ISO_DATE).toString());
 			Measure measure = new Measure();
-			measure.setMeasureDate(fromDate.plusDays(i).format(DateTimeFormatter.BASIC_ISO_DATE).toString(), DateTimeFormatter.BASIC_ISO_DATE);
+			measure.setMeasureDate(fromDate.plusDays(i).format(DateTimeFormatter.BASIC_ISO_DATE).toString());
 			measure.setHumidity(rand.nextFloat()%i);
 			measure.setLight(rand.nextFloat()%i);
 			measure.setSoil(rand.nextFloat()%i);

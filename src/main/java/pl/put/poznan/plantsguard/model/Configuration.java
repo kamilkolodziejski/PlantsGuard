@@ -1,6 +1,7 @@
 package pl.put.poznan.plantsguard.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Configuration {
 	
@@ -8,36 +9,43 @@ public class Configuration {
 	private Integer measureInterval;
 	private Integer ordersInterval;
 	private String notifyNumber;
-	ArrayList<String> authorizedNumbers;
+	private List<String> authorizedNumbers;
 	
 	public Configuration() {
 		authorizedNumbers = new ArrayList<String>();
 	}
-	
-	public int getMeasureInterval() {
+
+	public Integer getMeasureInterval() {
 		return measureInterval;
 	}
-	public void setMeasureInterval(int measureInterval) {
+
+	public void setMeasureInterval(Integer measureInterval) {
 		this.measureInterval = measureInterval;
 	}
-	public int getOrdersInterval() {
+
+	public Integer getOrdersInterval() {
 		return ordersInterval;
 	}
-	public void setOrdersInterval(int ordersInterval) {
+
+	public void setOrdersInterval(Integer ordersInterval) {
 		this.ordersInterval = ordersInterval;
 	}
-	public ArrayList<String> getAuthorizedNumbers() {
+
+	public String getNotifyNumber() {
+		return notifyNumber;
+	}
+
+	public void setNotifyNumber(String notifyNumber) {
+		this.notifyNumber = notifyNumber;
+	}
+
+	public List<String> getAuthorizedNumbers() {
 		return authorizedNumbers;
 	}
-	public void setAuthorizedNumbers(ArrayList<String> authorizedNumbers) {
+
+	public void setAuthorizedNumbers(List<String> authorizedNumbers) {
 		this.authorizedNumbers = authorizedNumbers;
 	}
 	
-	public boolean isValid() {
-		if(measureInterval==null) return false;
-		if(ordersInterval==null) return false;
-		if(authorizedNumbers==null) return  false;
-		return true;
-	}
 	
 }

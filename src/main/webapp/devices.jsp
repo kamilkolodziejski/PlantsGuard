@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PlantsGuard - Dashboard</title>
+<title>PlantsGuard - Urządzenia</title>
 <!-- BOOTSTRAP STYLES-->
 <link href="/assets/css/bootstrap.css" rel="stylesheet" />
 <!-- FONTAWESOME STYLES-->
@@ -18,8 +18,16 @@
 <!-- GOOGLE FONTS-->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans'
 	rel='stylesheet' type='text/css' />
+	
+<script type="text/javascript">
+function goToSettings(dev_id) {
+	window.location='/device/'+dev_id;
+}
+</script>
 </head>
 <body>
+
+
 	<div id="wrapper">
 	
 		<!--  NAV TOP  -->
@@ -45,25 +53,42 @@
 		<nav class="navbar-default navbar-side" role="navigation">
 			<div class="sidebar-collapse">
 				<ul class="nav" id="main-menu">
-					<li class="active-link"><a href="/dashboard"><i class="fa fa-desktop "></i>Dashboard</a></li>
+					<li><a href="/dashboard"><i class="fa fa-desktop "></i>Dashboard</a></li>
 					<li><a href="/charts"><i class="fa fa-table "></i>Wykres pomiarów</a></li>
-					<li><a href="/devices"><i class="fa fa-edit "></i>Urządzenia</a></li>
+					<li class="active-link"><a href="/devices"><i class="fa fa-edit "></i>Urządzenia</a></li>
 			</div>
 		</nav>
 		<!-- /. NAV SIDE  -->
+		
 		<div id="page-wrapper">
 			<div id="page-inner">
 				<div class="row">
 					<div class="col-md-12">
-						<h2>Dashboard</h2>
-						
-						</br><center>
-						<div> <h1>Projekt zaliczeniowy</h1></div>
-						<div><p>Autorzy</p></div>
-						<p>Kamil Kołodziejski</p>
-						<p>Witold Kaszubowski</p>
-						<p>25.10.2017</p>
-						</center>
+						<h2>Urządzenia</h2>
+							<center>
+								<table id="device_table">
+									<tr>
+										<td>ID</td>
+										<td>Numer</td>
+										<td>Nazwa</td>
+										<td>Ostatni odczyt</td>
+										<td>Ostateni podlewanie</td>
+										<td>Poziom baterii</td>
+									</tr>									
+									<c:forEach items="${devices}"
+										var="device" varStatus="status">
+										<tr>
+											<td id="dev_id_${status.index }">${device.deviceId}</td>
+											<td id="dev_number_${status.index }">${device.deviceNumber}</td>
+											<td id="dev_name">${device.deviceName}</td>
+											<td>${device.lastMeasure}</td>
+											<td>${device.lastIrrigate}</td>
+											<td>${device.lastBatteryLevel}</td>
+											<td><input type="button" onclick="goToSettings(document.getElementById('dev_id_${status.index}').textContent)">Edytuj</button></td>
+										</tr>
+									</c:forEach>
+								</table>
+							</center>
 					</div>
 				</div>
 				<!-- /. ROW  -->
@@ -79,6 +104,8 @@
 
 		<div class="row">
 			<div class="col-lg-12">
+				&copy; 2014 yourdomain.com | Design by: <a
+					href="http://binarytheme.com" style="color: #fff;" target="_blank">www.binarytheme.com</a>
 			</div>
 		</div>
 	</div>
@@ -87,11 +114,11 @@
 	<!-- /. WRAPPER  -->
 	<!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
 	<!-- JQUERY SCRIPTS -->
-	<script src="assets/js/jquery-1.10.2.js"></script>
+	<script src="/assets/js/jquery-1.10.2.js"></script>
 	<!-- BOOTSTRAP SCRIPTS -->
-	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="/assets/js/bootstrap.min.js"></script>
 	<!-- CUSTOM SCRIPTS -->
-	<script src="assets/js/custom.js"></script>
+	<script src="/assets/js/custom.js"></script>
 
 
 </body>
